@@ -2,11 +2,13 @@
 
 class User
 {
+    private const UNKNOWN = 'unknown';
+
     public function getUserName(ORM $orm, Request $request): ?string
     {
         $email = $this->getMasterEmail($request);
 
-        if ($email === 'unknown') {
+        if ($email === static::UNKNOWN) {
             return null;
         }
 
@@ -29,6 +31,6 @@ class User
             return $request->post('masterEmail');
         }
 
-        return 'unknown';
+        return static::UNKNOWN;
     }
 }
